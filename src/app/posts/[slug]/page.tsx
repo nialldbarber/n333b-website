@@ -15,8 +15,10 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const post = await getPost(params.slug);
-  const links = await collectLinks(params.slug);
+  const [post, links] = await Promise.all([
+    getPost(params.slug),
+    collectLinks(params.slug),
+  ]);
   if (!post) return notFound();
 
   return (

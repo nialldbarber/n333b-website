@@ -23,7 +23,7 @@ const links = [
 const date = new Date();
 const year = date.getFullYear();
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer
       className={cn(

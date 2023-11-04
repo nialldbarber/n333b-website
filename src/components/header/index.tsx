@@ -18,7 +18,7 @@ const links = [
   { id: "header-links-3", title: "About", href: "/about", segment: "about" },
 ];
 
-export default function Header() {
+export function Header() {
   const activeSegment = useSelectedLayoutSegment();
   const isActive = (segment: string) => segment === activeSegment;
 

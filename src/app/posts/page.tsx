@@ -3,9 +3,7 @@ import { PostList } from "~/components/post-list";
 import { Text } from "~/components/text";
 
 export default async function Posts() {
-  const posts = await getPosts();
-  const tags = await collectTags();
-
+  const [posts, tags] = await Promise.all([getPosts(), collectTags()]);
   return (
     <div>
       <Text level="1">Posts page</Text>
