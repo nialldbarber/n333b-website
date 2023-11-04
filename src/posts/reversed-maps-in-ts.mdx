@@ -1,0 +1,79 @@
+---
+title: Creating your own TypeScript Utility Type
+description:
+slug: creating-your-own-typescript-utility-type
+date: Nov 02, 2023
+tags: ["typescript", "generics"]
+sections: ["pick", "generics"]
+---
+
+<Stack>
+
+<HeaderOne>Creating your own TypeScript Utility Type</HeaderOne>
+
+{/* prettier-ignore */}
+<Paragraph>One of my favourite repos on TypeScript is <Highlight><a href="https://github.com/type-challenges/type-challenges" target="_blank">Type Challenges</a></Highlight>. It sets you challenges to rewrite TypeScript utility types from scratch, so you can get a better understanding of how TypeScript works under the hood.</Paragraph>
+
+<Paragraph>But, what exactly is a TypeScript utility type? </Paragraph>
+
+<Paragraph level="2" id="pick">
+  Pick
+</Paragraph>
+
+<Paragraph>Let's take the `Pick<T>` utility type as an example. TypeScript gives you a utility type where you can _select_ an item from a type and create a new type from that.</Paragraph>
+
+<Paragraph>An example:</Paragraph>
+
+```ts
+// Create a type:
+type Fruit = {
+  favourite: "banana";
+  meh: "apple";
+  yuck: "orange";
+};
+
+// Pick an item from that type:
+type Apple = Pick<Fruit, "meh">;
+//     ^? type Apple = { meh: "apple" }
+```
+
+{/* prettier-ignore */}
+<Paragraph>Seems pretty self-explanatory! But how does this utility actually work? To first understand this, let's drill down to the absolute basics.</Paragraph>
+
+{/* prettier-ignore */}
+<Paragraph>If you hover your cursor over the `Pick` utility, you'll see exactly how the utility is made:</Paragraph>
+
+```ts
+type Apple = Pick<Fruit, "meh">;
+```
+
+---
+
+<Paragraph level="2" id="generics">
+  Generics
+</Paragraph>
+
+{/* prettier-ignore */}
+<Paragraph>The answer lies in Generics! Generics are the type equivalent of function parameters; they make types more reuseable!</Paragraph>
+
+{/* prettier-ignore */}
+<Paragraph>Let's compare a function and a type together to demonstrate this:</Paragraph>
+
+{/* prettier-ignore */}
+```ts
+function addNumbers(x, y) {
+  return x + y; //  ^  ^ - these are parameters. They are dynamic
+}               //         and produce different results based on
+                //         different input!
+```
+
+<Paragraph>Let's try this with a type now:</Paragraph>
+
+```ts
+type AddNumbers<X, Y> = {
+  x: X;
+  y: Y;
+};
+```
+
+</Stack>

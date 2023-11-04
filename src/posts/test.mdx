@@ -1,0 +1,23 @@
+---
+title: Adding ambient light support to Linux and GNOME
+description: A quick dive into Linux kernel drivers
+slug: MSHW0184
+date: Dec 15, 2020
+tags: ["test"]
+---
+
+A couple of a weeks ago I picked up a Surface Pro 7 (i3 1.2 mhz) at a Black Friday sale. I love making devices run software they shouldn't, so I got to work dual-booting Linux on it. To my surprise, almost everything worked with the default Fedora 33 kernel, not including the touchscreen, the ambient light sensor, and the camera. After compiling and loading the great [linux-surface](https://github.com/linux-surface/linux-surface) kernel the touchscreen started to work but I found a [GitHub issue](https://github.com/linux-surface/linux-surface/issues/121) someone had made detailing that the ambient light sensor (a MSHW0184) isn't detected. This normally wouldn't matter a lot, but I'd discovered that GNOME supported adjusting the screen brightness based on the ambient light through [iio-sensor-proxy](https://gitlab.freedesktop.org/hadess/iio-sensor-proxy/).
+
+I knew nothing (and still know very little) about the Linux kernel or drivers, but this seemed like a great place to start. Luckily, GitHub user archseer discovered that the MSHW0184 registers align with the APDS9960 device, which already has an upstream kernel driver, and he mentioned all that should be needed is a small change to allow the driver to detect the new device.
+
+Here I realized I had to do some research into how the kernel loads drivers. I knew that drivers could either be statically built into the kernel, or built as kernel modules so they can be dynamically loaded when they're needed. But how does the kernel know when to load specific drivers for certain hardware? You register the ID with a matching table.
+
+Initially, I tried adding the MSHW0184 device ID to the existing match table in the APDS9960 driver for the i2c protocol. This consisted of the following one-line change:
+
+```c
+static const struct i2c_device_id apds9960_id[] = {
+                    { "apds9960", 0 },
++                   { "MSHW0184, 0 }
+                    {}
+}
+```
