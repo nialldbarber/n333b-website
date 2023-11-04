@@ -35,7 +35,7 @@ export default function Footer() {
         <ul className="flex justify-center">
           {links.map(({ id, title, href }) => (
             <li key={id}>
-              <Link href={href} className="px-4" target="_blank">
+              <Link href={href} className="p-4" target="_blank">
                 {title}
               </Link>
             </li>

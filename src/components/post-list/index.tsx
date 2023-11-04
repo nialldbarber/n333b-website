@@ -1,13 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 
 import { Post } from "~/lib/types";
 import { PostCard } from "~/components/post-card";
 import { PostTags } from "~/components/post-tags";
 import Stack from "~/components/stack";
 import { Text } from "~/components/text";
+
+import { Skeleton } from "../skeleton";
 
 type Props = {
   posts: (Post | null)[];
@@ -31,6 +32,8 @@ export function PostList({ posts, tags }: Props) {
       {updatedFilteredList.map((post) => (
         <PostCard key={post?.date} post={post} />
       ))}
+      <Skeleton height="large" block={4} />
+      <Skeleton height="large" radius="full" />
     </Stack>
   );
 }
