@@ -28,10 +28,6 @@ const skeletonVariants = cva("bg-gray-200 dark:bg-gray-700", {
   },
 });
 
-/**
- * <Skeleton block={3} height={} />
- */
-
 interface SkeletonProps
   extends HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof skeletonVariants> {
@@ -47,11 +43,12 @@ export function Skeleton({
   className,
 }: SkeletonProps) {
   return (
-    <div role="status" className="animate-pulse">
+    <div role="status" className="animate-pulse w-full">
       {[...Array(block)].map((_, index) => (
         <div key={index}>
           <div
             className={cn(skeletonVariants({ height, radius, className }))}
+            style={{ width }}
           />
           <span className="sr-only">Loading...</span>
         </div>

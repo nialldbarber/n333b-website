@@ -9,7 +9,7 @@ import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import remarkToc from "remark-toc";
 
-import Stack from "~/components/stack";
+import { Stack } from "~/components/stack";
 import { Text } from "~/components/text";
 
 export const mdxComponents: MDXComponents = {

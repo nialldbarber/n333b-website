@@ -25,7 +25,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        "flex justify-between overflow-hidden m-auto pl-3 py-6 sticky top-0 bg-black max-w-4xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl"
+        "flex justify-between overflow-hidden m-auto pl-3 py-6 sticky top-0 bg-black z-10 max-w-4xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl"
       )}
     >
       <Link href="/" aria-label="Home">

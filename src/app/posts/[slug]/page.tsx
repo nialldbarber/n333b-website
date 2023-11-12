@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { collectLinks, getPost, getPosts } from "~/lib/posts";
@@ -23,7 +24,12 @@ export default async function PostPage({
 
   return (
     <div className={cn("grid grid-cols-posts-table-of-content")}>
-      <PostBody>{post?.body}</PostBody>
+      <div>
+        <div className="pb-8">
+          <Image src={post.image} width={400} height={400} alt="stuff" />
+        </div>
+        <PostBody>{post?.body}</PostBody>
+      </div>
       {links && <TableOfContents links={links} />}
     </div>
   );

@@ -5,7 +5,7 @@ export default function Main({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={cn(
-        "border m-auto p-6 min-h-screen max-w-4xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl"
+        "m-auto p-6 min-h-screen max-w-4xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl"
       )}
     >
       {children}

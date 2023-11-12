@@ -11,4 +11,6 @@ export type Post = {
   isThirdParty?: boolean;
   href?: string;
   sections?: Array<string>;
+  image: string;
+  preview: string;
 };

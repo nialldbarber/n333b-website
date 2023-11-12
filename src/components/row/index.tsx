@@ -9,7 +9,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export function Stack({
+export function Row({
   margin = "0px",
   gutter = "0px",
   children: childProp,
@@ -18,7 +18,7 @@ export function Stack({
   const children = flattenChildren(childProp);
 
   return (
-    <div style={{ margin }} {...rest}>
+    <div className="flex flex-row items-center" style={{ margin }} {...rest}>
       {Children.map(children, (child, index) => {
         const first = index === 0;
         const last = index === children.length - 1;
@@ -26,8 +26,8 @@ export function Stack({
         return (
           <div
             style={{
-              paddingTop: first ? "0px" : gutter,
-              paddingBottom: last ? "0px" : gutter,
+              paddingRight: first ? "0px" : gutter,
+              paddingLeft: last ? "0px" : gutter,
             }}
           >
             {child}

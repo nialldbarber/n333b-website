@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
 
 import { cn } from "~/lib/style/cn";
 import { Text } from "~/components/text";
@@ -26,16 +27,15 @@ export default function TableOfContents({ links }: Props) {
       style={{ height }}
     >
       <Text level="3">Table of contents</Text>
-      <div className={cn("flex flex-col")}>
+      <div className="flex flex-col pt-4">
         {links?.map((link) => (
           <a
             key={link}
             href={`#${link}`}
-            className="py-2 pl-1 focus:outline focus:outline-1"
+            className="group flex items-center py-2 pl-1 focus:outline focus:outline-1"
           >
-            <Text className="capitalize">
-              {"->"} {link}
-            </Text>
+            <ArrowRightIcon className="transition-all mr-2 group-hover:mr-3 duration-200 ease-in-out" />
+            <Text className="capitalize">{link}</Text>
           </a>
         ))}
       </div>

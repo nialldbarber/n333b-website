@@ -1,11 +1,11 @@
 import { createElement } from "react";
 import type { HTMLAttributes } from "react";
-import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 
 import { isNumber } from "~/lib/isNumber";
 
-export const textVariants = cva("text-white", {
+export const textVariants = cva("", {
   variants: {
     variant: {},
     level: {
@@ -24,8 +24,22 @@ export const textVariants = cva("text-white", {
       large: "capsize text-9xl",
       highlight: "border border-dashed border-red-500",
     },
+    weight: {
+      fontThin: "font-thin",
+      fontExtralight: "font-extralight",
+      fontLight: "font-light",
+      fontNormal: "font-normal",
+      fontMedium: "font-medium",
+      fontSemibold: "font-semibold",
+      fontBold: "font-bold",
+      fontExtrabold: "font-extrabold",
+      fontBlack: "font-black",
+    },
   },
-  defaultVariants: {},
+  defaultVariants: {
+    level: "p",
+    weight: "fontNormal",
+  },
 });
 
 interface TextProps
@@ -36,6 +50,7 @@ export function Text({
   variant,
   className,
   level = "p",
+  weight,
   children,
   ...rest
 }: TextProps) {
@@ -53,13 +68,15 @@ export function Text({
 
   if (!T) {
     return (
-      <p className={textVariants({ variant, level, className })}>{children}</p>
+      <p className={textVariants({ variant, level, weight, className })}>
+        {children}
+      </p>
     );
   }
 
   return createElement(
     T,
-    { ...rest, className: textVariants({ variant, level, className }) },
+    { ...rest, className: textVariants({ variant, level, weight, className }) },
     children
   );
 }

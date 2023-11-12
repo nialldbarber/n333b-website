@@ -16,11 +16,7 @@ export const getPosts = cache(async () => {
         const filePath = `${postsRoot}${file}`;
         const postContent = await fs.readFile(filePath, "utf-8");
         const { data, content } = matter(postContent);
-
-        if (data.published === false) {
-          return null;
-        }
-
+        if (data.published === false) return null;
         return { ...data, body: content } as Post;
       })
   );
