@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import remarkA11yEmoji from "@fec/remark-a11y-emoji";
 import { Code } from "bright";
-import { MDXComponents } from "mdx/types";
+import type { MDXComponents } from "mdx/types";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
@@ -61,14 +61,3 @@ export default function PostBody({ children }: { children: string }) {
     </section>
   );
 }
-
-// Create a union:
-type Fruit = {
-  favourite: "banana";
-  second: "apple";
-  least: "orange";
-};
-
-// Pick an item from that union:
-type Apple = Pick<Fruit, "second">;
-//     ^? "apple"

@@ -1,35 +1,36 @@
 "use client";
 
-import * as ToggleGroup from "@radix-ui/react-toggle-group";
-
+import { Badge } from "~/components/badge";
 import { Text } from "~/components/text";
 
 type Props = {
   tags: Array<string>;
+  selectedFilter: string;
   selectFilter: (tag: string) => void;
 };
 
-export function PostTags({ tags, selectFilter }: Props) {
+export function PostTags({ tags, selectedFilter, selectFilter }: Props) {
   return (
-    <ToggleGroup.Root
-      type="single"
-      className="bg-black inline-flex flex-col"
-      orientation="horizontal"
-    >
-      {tags?.map((tag, index) => (
-        <div key={index} className="mr-20">
-          <ToggleGroup.Item
-            value={tag}
-            className="flex bg-white h-5 w-5 data-[state=on]:bg-yellow my-4 pl-5"
-            onClick={() => selectFilter(tag)}
-            tabIndex={index}
-          >
-            <Text level="span" className="pl-4 pb-1">
-              {tag}
-            </Text>
-          </ToggleGroup.Item>
-        </div>
-      ))}
-    </ToggleGroup.Root>
+    <div className="text-center">
+      <Text level="2" weight="fontSemibold">
+        Categories
+      </Text>
+      <div className="flex items-center justify-center py-6">
+        {tags?.map((tag, index) => {
+          const isActive = tag === selectedFilter;
+          return (
+            <div key={index} className="mx-2">
+              <Badge
+                text={tag}
+                onClick={() => selectFilter(tag)}
+                tabIndex={index}
+                index={index}
+                isActive={isActive}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }

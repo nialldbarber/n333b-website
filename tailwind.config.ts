@@ -29,9 +29,18 @@ const config: Config = {
         accents7: "var(--accents-7)",
         accents8: "var(--accents-8)",
         hoverColor: "var(--hover-color)",
+        badgePurpleBg: "var(--badge-purple-bg)",
+        badgePurpleFg: "var(--badge-purple-fg)",
+        badgeGreenBg: "var(--badge-green-bg)",
+        badgeGreenFg: "var(--badge-green-fg)",
+        badgeAmberBg: "var(--badge-amber-bg)",
+        badgeAmberFg: "var(--badge-amber-fg)",
+        badgeBlueBg: "var(--badge-blue-bg)",
+        badgeBlueFg: "var(--badge-blue-fg)",
       },
       height: {
         screen: "32rem",
+        header: "80px",
       },
       gridTemplateColumns: {
         "posts-table-of-content": "1fr 300px",

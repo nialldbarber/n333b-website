@@ -30,18 +30,21 @@ export default async function Home() {
           Check out some of the latest and greatest!
         </Text>
       </Row>
-      {posts && (
-        <MotionDiv
-          variants={variants}
-          initial="closed"
-          animate="open"
-          className="grid grid-cols-3 gap-6"
-        >
-          {posts.map((post) => (
-            <PostCard key={post?.date} post={post} />
-          ))}
-        </MotionDiv>
-      )}
+      <div className="mt-5">
+        {posts && (
+          <MotionDiv
+            variants={variants}
+            initial="closed"
+            animate="open"
+            className="grid grid-cols-3 gap-6"
+            transition={{ type: "linear" }}
+          >
+            {posts.map((post) => (
+              <PostCard key={post?.date} post={post} />
+            ))}
+          </MotionDiv>
+        )}
+      </div>
     </Stack>
   );
 }

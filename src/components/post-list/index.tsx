@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
 
 import type { Post } from "~/lib/types";
 import { PostCard } from "~/components/post-card";
@@ -24,10 +25,24 @@ export function PostList({ posts, tags }: Props) {
 
   return (
     <Stack gutter="6px">
-      <PostTags tags={tags} selectFilter={selectFilter} />
-      {updatedFilteredList.map((post) => (
-        <PostCard key={post?.date} post={post} />
-      ))}
+      <PostTags
+        tags={tags}
+        selectedFilter={selectedFilter}
+        selectFilter={selectFilter}
+      />
+      <div className="grid grid-cols-3 gap-6">
+        {updatedFilteredList.map((post) => (
+          <motion.div
+            key={post?.date}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <PostCard post={post} />
+          </motion.div>
+        ))}
+      </div>
     </Stack>
   );
 }

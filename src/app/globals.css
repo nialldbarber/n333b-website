@@ -17,6 +17,19 @@
   --accents-7: #eaeaea;
   --accents-8: #fafafa;
   --hover-color: hsla(0, 0%, 100%, 0.02);
+  --header-height: 80px;
+  --badge-purple-bg: #9162c015;
+  --badge-purple-fg: #9162c0;
+  --badge-green-bg: #449d5d15;
+  --badge-green-fg: #449d5d;
+  --badge-amber-bg: #d1772415;
+  --badge-amber-fg: #d17724;
+  --badge-blue-bg: #3b88e915;
+  --badge-blue-fg: #3b88e9;
+  --badge-purple-bg: #9162c025;
+  --badge-green-bg: #449d5d25;
+  --badge-amber-bg: #d1772425;
+  --badge-blue-bg: #3b88e925;
 }
 
 @media (prefers-color-scheme: dark) {

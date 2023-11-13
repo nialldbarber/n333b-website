@@ -1,12 +1,15 @@
 "use client";
 
+import { Fragment, type MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 
 import type { Post } from "~/lib/types";
 import { Spacer } from "~/components/spacer";
 import { Text } from "~/components/text";
+
+import { Badge } from "../badge";
 
 const variants = {
   open: {
@@ -26,14 +29,30 @@ const variants = {
 };
 
 export function PostCard({ post }: { post: Post | null }) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ clientX, clientY, currentTarget }: MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
   return (
     <Link href={`/posts/${post?.slug}`} className="my-2 bg-black min-h-[200px]">
       <motion.div
         variants={variants}
-        className="flex flex-col items-center h-full p-6 rounded-lg border border-accents2 transition-all hover:border-accents3 hover:bg-hoverColor"
+        className="relative flex flex-col items-center h-full p-6 rounded-lg border border-accents2 transition-all hover:border-accents3 hover:bg-hoverColor group"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 1 }}
+        onMouseMove={handleMouseMove}
       >
+        <motion.div
+          className="absolute -inset-px pointer-events-none rounded-lg opacity-0 transition duration-300 group-hover:opacity-100"
+          style={{
+            background: useMotionTemplate`radial-gradient(500px circle at ${mouseX}px ${mouseY}px, rgb(14 165 233 / 0.10), transparent 80%)`,
+          }}
+        />
         {post?.image && (
           <Image
             src={post?.image}
@@ -49,6 +68,19 @@ export function PostCard({ post }: { post: Post | null }) {
         </Text>
         <Spacer paddingVertical="5px" />
         <Text className="text-accents5">{post?.preview}</Text>
+        <div className="flex justify-around">
+          {post?.tags.map((tag, index) => (
+            <Fragment key={index}>
+              <Badge
+                text={tag}
+                index={index}
+                isActive
+                onClick={() => console.log("hello")}
+              />
+              <Spacer paddingHorizontal="5px" />
+            </Fragment>
+          ))}
+        </div>
       </motion.div>
     </Link>
   );

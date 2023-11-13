@@ -2,7 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { collectLinks, getPost, getPosts } from "~/lib/posts";
-import { cn } from "~/lib/style/cn";
+import { GoBack } from "~/components/button/go-back";
 import PostBody from "~/components/post-body";
 import TableOfContents from "~/components/table-of-contents";
 
@@ -23,14 +23,24 @@ export default async function PostPage({
   if (!post) return notFound();
 
   return (
-    <div className={cn("grid grid-cols-posts-table-of-content")}>
-      <div>
-        <div className="pb-8">
-          <Image src={post.image} width={400} height={400} alt="stuff" />
+    <>
+      <GoBack />
+      <div className="grid grid-cols-posts-table-of-content pt-2">
+        <div>
+          <div className="pb-11 pt-7 flex justify-center">
+            <Image
+              src={post.image}
+              width={400}
+              height={400}
+              alt="stuff"
+              className="rounded-md"
+            />
+          </div>
+          <div className="h-[1px] bg-accents2 w-full mb-7" />
+          <PostBody>{post?.body}</PostBody>
         </div>
-        <PostBody>{post?.body}</PostBody>
+        {links && <TableOfContents links={links} />}
       </div>
-      {links && <TableOfContents links={links} />}
-    </div>
+    </>
   );
 }
