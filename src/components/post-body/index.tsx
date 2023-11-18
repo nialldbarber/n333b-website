@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import remarkA11yEmoji from "@fec/remark-a11y-emoji";
 import { Code } from "bright";
@@ -22,9 +21,6 @@ export const mdxComponents: MDXComponents = {
         {children}
       </Link>
     );
-  },
-  img: ({ props }) => {
-    return <Image {...props} alt="post-image" />;
   },
   Paragraph: ({ children, ...rest }) => <Text {...rest}>{children}</Text>,
   HeaderOne: ({ children, ...rest }) => (
