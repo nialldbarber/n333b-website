@@ -1,7 +1,6 @@
 "use client";
 
 import { Badge } from "~/components/badge";
-import { Text } from "~/components/text";
 
 type Props = {
   tags: Array<string>;
@@ -27,6 +26,7 @@ export function PostTags({ tags, selectedFilter, selectFilter }: Props) {
                 text={TAG_MAP[tag]}
                 onClick={() => selectFilter(tag)}
                 // TODO: Make this more a11y!
+                // @ts-ignore
                 tabIndex={index}
                 index={index}
                 isActive={isActive}
