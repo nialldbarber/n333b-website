@@ -13,7 +13,7 @@ export default function About() {
       </Text>
       <Spacer paddingVertical="28px" />
       {/* About Me */}
-      <div className="grid grid-cols-about-page">
+      <div className="grid lg:grid-cols-about-page grid-rows-2 lg:grid-rows-none">
         <div>
           <Text level="4" className="text-accents5">
             About me
@@ -128,7 +128,7 @@ export default function About() {
       </div>
       <Spacer paddingVertical="24px" />
       {/* Experience */}
-      <div className="grid grid-cols-about-page">
+      <div className="grid lg:grid-cols-about-page grid-rows-2 lg:grid-rows-none">
         <div>
           <Text level="4" className="text-accents5">
             Experience
