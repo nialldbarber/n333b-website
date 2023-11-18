@@ -10,7 +10,8 @@ const font = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Niall Barber | Frontend Engineer",
-  description: "This is some cooooooool ass description about little old me",
+  description:
+    "Hey! I'm a Frontend Engineer based in the U.K. 🇬🇧 specialising in React Native, Design Systems and much more!",
 };
 
 export default function RootLayout({

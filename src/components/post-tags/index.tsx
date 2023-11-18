@@ -9,6 +9,12 @@ type Props = {
   selectFilter: (tag: string) => void;
 };
 
+const TAG_MAP: Record<string, string> = {
+  typescript: "TypeScript",
+  generics: "Generics",
+  test: "Test",
+};
+
 export function PostTags({ tags, selectedFilter, selectFilter }: Props) {
   return (
     <div className="text-center">
@@ -21,8 +27,9 @@ export function PostTags({ tags, selectedFilter, selectFilter }: Props) {
           return (
             <div key={index} className="mx-2">
               <Badge
-                text={tag}
+                text={TAG_MAP[tag]}
                 onClick={() => selectFilter(tag)}
+                // TODO: Make this more a11y!
                 tabIndex={index}
                 index={index}
                 isActive={isActive}

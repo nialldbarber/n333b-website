@@ -1,12 +1,9 @@
-import { Skeleton } from "~/components/skeleton";
-import { Spacer } from "~/components/spacer";
+import { Loader } from "~/components/loader";
 
-export default async function PostPage() {
+export default function Loading() {
   return (
-    <div className="flex flex-row">
-      <Skeleton block={3} height="xlarge" />
-      <Spacer orientation="vertical" paddingHorizontal="20px" />
-      <Skeleton block={3} />
+    <div className="flex items-center justify-center h-minusHeader">
+      <Loader />
     </div>
   );
 }

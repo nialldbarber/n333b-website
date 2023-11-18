@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, type MouseEvent } from "react";
+import type { MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
@@ -8,8 +8,6 @@ import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import type { Post } from "~/lib/types";
 import { Spacer } from "~/components/spacer";
 import { Text } from "~/components/text";
-
-import { Badge } from "../badge";
 
 const variants = {
   open: {
@@ -28,7 +26,9 @@ const variants = {
   },
 };
 
-export function PostCard({ post }: { post: Post | null }) {
+type Props = { post: Post | null };
+
+export function PostCard({ post }: Props) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -68,19 +68,6 @@ export function PostCard({ post }: { post: Post | null }) {
         </Text>
         <Spacer paddingVertical="5px" />
         <Text className="text-accents5">{post?.preview}</Text>
-        <div className="flex justify-around">
-          {post?.tags.map((tag, index) => (
-            <Fragment key={index}>
-              <Badge
-                text={tag}
-                index={index}
-                isActive
-                onClick={() => console.log("hello")}
-              />
-              <Spacer paddingHorizontal="5px" />
-            </Fragment>
-          ))}
-        </div>
       </motion.div>
     </Link>
   );

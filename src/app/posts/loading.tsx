@@ -1,9 +1,9 @@
-import { Skeleton } from "~/components/skeleton";
+import { Loader } from "~/components/loader";
 
 export default function Loading() {
   return (
-    <div>
-      <Skeleton block={15} />
+    <div className="flex items-center justify-center h-minusHeader">
+      <Loader />
     </div>
   );
 }

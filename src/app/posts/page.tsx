@@ -4,7 +4,7 @@ import { PostList } from "~/components/post-list";
 export default async function Posts() {
   const [posts, tags] = await Promise.all([getPosts(), collectTags()]);
   return (
-    <div>
+    <div className="flex h-minusHeader">
       <PostList posts={posts} tags={tags} />
     </div>
   );

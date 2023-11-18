@@ -37,18 +37,24 @@ const config: Config = {
         badgeAmberFg: "var(--badge-amber-fg)",
         badgeBlueBg: "var(--badge-blue-bg)",
         badgeBlueFg: "var(--badge-blue-fg)",
+        fadedAccents5: "rgba(136, 136, 136, 0.2)",
       },
       height: {
         screen: "32rem",
         header: "80px",
+        minusHeader: "calc(100vh - 81px - 140px)",
       },
       gridTemplateColumns: {
         "posts-table-of-content": "1fr 300px",
+        "about-page": "120px 20px 1fr",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      opacity: {
+        "1": "0.01",
       },
     },
   },

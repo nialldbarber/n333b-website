@@ -14,6 +14,7 @@ const links = [
     title: "Snippets",
     href: "/snippets",
     segment: "snippets",
+    isHidden: true,
   },
   { id: "header-links-3", title: "About", href: "/about", segment: "about" },
 ];
@@ -34,18 +35,21 @@ export function Header() {
           aria-label="Home"
           className="transition-all hover:scale-105"
         >
-          <Text level="3">n333b</Text>
+          <Text level="3" weight="fontSemibold">
+            n333b
+          </Text>
         </Link>
         <nav role="navigation" aria-label="Primary navigation">
           <ul className="flex">
-            {links.map(({ id, title, href, segment }) => (
+            {links.map(({ id, title, href, segment, isHidden }) => (
               <li key={id}>
                 <Link
                   href={href}
                   aria-label={`Navigate to ${title}`}
                   className={cn(
                     "relative cursor-pointer after:bg-white py-3 px-6 mx-2 font-semibold",
-                    segment === activeSegment && "text-black font-bold"
+                    segment === activeSegment && "text-black font-bold",
+                    isHidden && "hidden"
                   )}
                 >
                   {title}

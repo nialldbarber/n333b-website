@@ -20,14 +20,18 @@ export default async function Home() {
 
   return (
     <Stack gutter="4px">
-      <Text level="large">Niall Barber</Text>
-      <Text level="1">Frontend engineer</Text>
+      <Text level="large" weight="fontSemibold">
+        Niall Barber
+      </Text>
+      <Text level="1" weight="fontSemibold">
+        Frontend Engin33r
+      </Text>
       <Spacer paddingVertical="20px" />
       <Row>
         <Text level="3">Latest posts</Text>
         <Spacer paddingHorizontal="4px" />
         <Text level="4" className="text-accents5">
-          Check out some of the latest and greatest!
+          Check them out! ... promise {"they're"} not completely boring
         </Text>
       </Row>
       <div className="mt-5">
