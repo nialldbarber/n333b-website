@@ -7,7 +7,7 @@ import { Text } from "~/components/text";
 
 export default function About() {
   return (
-    <div className="max-w-2xl m-auto">
+    <div className="max-w-2xl m-auto mb-10">
       <Text level="1" weight="fontSemibold">
         👋...hi there
       </Text>

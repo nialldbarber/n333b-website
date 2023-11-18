@@ -39,7 +39,7 @@ export function Footer() {
       )}
       role="contentinfo"
     >
-      <nav className="mb-3" aria-label="Site">
+      <nav aria-label="Site">
         <ul className="flex justify-center">
           {links.map(({ id, title, href, component }) => (
             <li key={id}>

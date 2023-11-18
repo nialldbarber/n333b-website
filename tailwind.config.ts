@@ -17,6 +17,9 @@ const config: Config = {
       },
     },
     extend: {
+      fontSize: {
+        mainHeaderClamp: "clamp(3rem, 10rem, 10vw)",
+      },
       colors: {
         black: "var(--black)",
         yellow: "var(--yellow)",
@@ -43,9 +46,10 @@ const config: Config = {
         screen: "32rem",
         header: "80px",
         minusHeader: "calc(100vh - 81px - 140px)",
+        minusHeaderHome: "calc(100vh - 81px - 190px)",
       },
       gridTemplateColumns: {
-        "posts-table-of-content": "1fr 300px",
+        "posts-table-of-content": "1fr 285px",
         "about-page": "120px 20px 1fr",
       },
       backgroundImage: {

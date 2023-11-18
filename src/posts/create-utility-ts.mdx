@@ -1,0 +1,122 @@
+---
+title: The <Pick> utility TypeScript type
+description:
+slug: dissecting-typescript-utility-types
+date: Nov 18, 2023
+tags: ["typescript"]
+sections: ["background", "breaking-it-down", "base-type", "key", "keyof", "mapped-types", "how-does-it-work", "putting-it-all-together", "example-usage", "wrapping-up"]
+image: "/post-images/creating-your-own-typescript-utility-type.png"
+preview: "Dissecting how the <Pick> Utility type works under the hood and it's uses-cases"
+---
+
+<Stack>
+<HeaderOne>The `Pick<T>` utility TypeScript type</HeaderOne>
+
+<Spacer paddingVertical="5px" />
+<Paragraph level="2" id="background">Background</Paragraph>
+{/* prettier-ignore */}
+<Paragraph>When I first started learning TypeScript, like most people, I started by annotating variables with the types I believed they should be. Simple. But not long after beginning, my needs became more complex. I needed to copy types, reuse types, but only select certain members.</Paragraph>
+
+{/* prettier-ignore */}
+<Paragraph>After some tutorials, reading the TypeScript handbook, I found Utility Types! The handbook says at the very top of the page: </Paragraph>
+
+> TypeScript provides several utility types to facilitate common type transformations. These utilities are available globally.
+
+{/* prettier-ignore */}
+<Paragraph>Aha! I thought, perfect, instead of creating a new type all over again, minus some members, I could use `Pick<T>`, `Omit<T>`. If I wanted to make sure *every* member was optional, instead of declaring them optional via `?:`, I could wrap the type in a `Partial<T>`! </Paragraph>
+
+{/* prettier-ignore */}
+<Paragraph>But then I came to my next question…and that was the implementation of a utility type. If you hover over a utility type, you’ll be met with (generally) some pretty gnarly types! As this post focuses on `Pick<T>`, let’s have a look at that! </Paragraph>
+
+```tsx
+type Pick<T, K extends keyof T> = {
+  [P in K]: T[P]; 
+};
+```
+
+{/* prettier-ignore */}
+<Paragraph>As my mum would politely say, “what the dickens?!” and maybe more understandably as my dad would say “what the actual f**k?!”. When I first started looking at TypeScript, it was types like this that put me off. I thought “this seems unnecessarily complex”, and well you could understand, however I don’t think a TypeScript beginner is the right audience for dissecting utility types! </Paragraph>
+
+<Paragraph level="2" id="breaking-it-down">Breaking it down</Paragraph>
+
+{/* prettier-ignore */}
+<Paragraph>So with my general shock over with, I thought about understanding how it works! The first thing we can do to lower the bar is to provide more descriptive names for the Generics:</Paragraph>
+
+```tsx
+type Pick<BaseType, Key extends keyof BaseType> = { 
+  [SelectedKey in Key]: BaseType[SelectedKey];
+};
+```
+
+<Paragraph level="2" id="base-type">BaseType</Paragraph>
+
+{/* prettier-ignore */}
+<Paragraph>Let’s go through each bit and see if we can demystify it all! We begin with `Pick<BaseType, >`. Here, we are saying, I want to use the `Pick` utility type and *pick* members from the `BaseType`. What is the `BaseType`? It’s the type you will use when you use `Pick`! Also `BaseType` is just a parameter; like in a function `fn(arg)`.</Paragraph>
+
+<Paragraph level="2" id="key">Key</Paragraph>
+
+{/* prettier-ignore */}
+<Paragraph>The next part is less clear with `Pick<BaseType, Key extends keyof BaseType>`. I’m about to use some new words here, so strap in! `Key extends keyof BaseType` translates to declaring `Key` as a parameter and with the `extends` keyword, we are *constraining* `Key` to be one of the keys (or members) of the `BaseType`.</Paragraph>
+
+<Paragraph level="2" id="keyof">keyof</Paragraph>
+
+{/* prettier-ignore */}
+<Paragraph>Here’s a deeper look at what `keyof` does in TypeScript. Let’s imagine we have a type that lists fruit:</Paragraph>
+
+```tsx
+type Fruit = {
+  apple: string;
+  banana: string;
+  orange: string;
+};
+```
+
+{/* prettier-ignore */}
+<Paragraph>But let’s say that we want to create a new type, but as a union type so it can be used as options. We could create a brand new type like so:</Paragraph>
+
+```tsx
+type Fruits = "apple" | "banana" | "orange"; 
+```
+
+{/* prettier-ignore */}
+<Paragraph>But that is cumbersome and if we change the original `Fruit` type, the two types will get out of sync. Instead, we can utilise the `keyof` keyword along with the `typeof` keyword to extract them into a new type:</Paragraph>
+
+```tsx
+type Fruits = keyof typeof Fruits;
+```
+
+<Paragraph level="2" id="mapped-types">Mapped types</Paragraph>
+
+{/* prettier-ignore */}
+<Paragraph>Ok, so we now know how to create parameters, how to constrain a generic type, let’s move onto the next part! Let’s dissect the final part of the {"Pick<T>"} utility type: **`[SelectedKey in Key]: BaseType[SelectedKey];`**.</Paragraph>
+
+{/* prettier-ignore */}
+<Paragraph>This section is where the magic of **`Pick`** truly happens. It uses a feature of TypeScript called a *mapped type*. Mapped types allow us to transform each property in a type in a particular way. In our case, we are using it to *pick* specific properties from **`BaseType`**.</Paragraph>
+
+<Paragraph level="2" id="how-does-it-work">How does it work?</Paragraph>
+
+- **`[SelectedKey in Key]`**: This is a mapped type syntax. Here, **`SelectedKey`** is a type variable that iterates over each member of **`Key`**. Remember, **`Key`** is the set of property names we've decided to pick from **`BaseType`**.
+- For each iteration, **`SelectedKey`** represents one of these property names. The syntax **`[SelectedKey in Key]`** can be thought of as a loop over each property name in **`Key`**.
+- **`BaseType[SelectedKey]`**: This part is known as an indexed access type. For each **`SelectedKey`**, this expression fetches the corresponding type from **`BaseType`**. So if **`SelectedKey`** is **`'apple'`**, **`BaseType[SelectedKey]`** will be the type of **`BaseType`**'s **`apple`** property, which in our **`Fruit`** example is **`string`**.
+
+<Paragraph level="2" id="putting-it-all-together">Putting it all together</Paragraph>
+
+{/* prettier-ignore */}
+<Paragraph>What the **`Pick`** type does is, for each key in **`Key`**, it creates a property in the new type with the same name (**`SelectedKey`**) and type (**`BaseType[SelectedKey]`**). So, if you pick **`apple`** and **`orange`** from **`Fruit`**, you end up with a type that only includes these two properties, both of type **`string`**.</Paragraph>
+
+<Paragraph level="2" id="example-usage">Example Usage</Paragraph>
+
+Let's see **`Pick`** in action:
+
+```tsx
+type PickedFruit = Pick<Fruit, 'apple' | 'orange'>;
+```
+
+{/* prettier-ignore */}
+<Paragraph>Here, **`PickedFruit`** will have only the **`apple`** and **`orange`** properties from **`Fruit`**, both of type **`string`**.</Paragraph>
+
+<Paragraph level="2" id="wrapping-up">Wrapping up</Paragraph>
+
+{/* prettier-ignore */}
+<Paragraph>Understanding utility types like **`Pick`** can initially seem daunting due to their abstract syntax. However, once you break them down, as we've done here, they reveal a logical and powerful system for manipulating types in TypeScript. These utilities, like **`Pick`**, help to write more flexible and maintainable code by enabling type transformations and reusability, making TypeScript a robust tool for developers.</Paragraph>
+</Stack>

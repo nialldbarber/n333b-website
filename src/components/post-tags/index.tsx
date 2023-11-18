@@ -18,10 +18,7 @@ const TAG_MAP: Record<string, string> = {
 export function PostTags({ tags, selectedFilter, selectFilter }: Props) {
   return (
     <div className="text-center">
-      <Text level="2" weight="fontSemibold">
-        Categories
-      </Text>
-      <div className="flex items-center justify-center py-6">
+      <div className="flex items-center justify-center pb-10">
         {tags?.map((tag, index) => {
           const isActive = tag === selectedFilter;
           return (

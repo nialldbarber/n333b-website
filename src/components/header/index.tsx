@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useSelectedLayoutSegment } from "next/navigation";
+import { usePathname, useSelectedLayoutSegment } from "next/navigation";
 import { motion } from "framer-motion";
 
 import { cn } from "~/lib/style/cn";
@@ -20,11 +20,12 @@ const links = [
 ];
 
 export function Header() {
+  const pathname = usePathname();
   const activeSegment = useSelectedLayoutSegment();
   const isActive = (segment: string) => segment === activeSegment;
 
   return (
-    <header className="w-full sticky top-0 z-10 bg-black border-b border-b-accents2">
+    <header className="w-full sticky top-0 z-10 bg-black border-b border-b-accents1">
       <div
         className={cn(
           "flex justify-between overflow-hidden m-auto pl-3 py-6 max-w-4xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl"
@@ -33,7 +34,10 @@ export function Header() {
         <Link
           href="/"
           aria-label="Home"
-          className="transition-all hover:scale-105"
+          className={cn(
+            "transition-all hover:scale-105",
+            pathname === "/" && "text-transparent"
+          )}
         >
           <Text level="3" weight="fontSemibold">
             n333b

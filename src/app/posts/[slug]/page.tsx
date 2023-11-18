@@ -34,6 +34,7 @@ export default async function PostPage({
               height={400}
               alt="stuff"
               className="rounded-md"
+              priority
             />
           </div>
           <div className="h-[1px] bg-accents2 w-full mb-7" />

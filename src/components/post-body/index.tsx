@@ -9,6 +9,7 @@ import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import remarkToc from "remark-toc";
 
+import { Spacer } from "~/components/spacer";
 import { Stack } from "~/components/stack";
 import { Text } from "~/components/text";
 
@@ -23,7 +24,7 @@ export const mdxComponents: MDXComponents = {
     );
   },
   img: ({ props }) => {
-    return <Image {...props} />;
+    return <Image {...props} alt="post-image" />;
   },
   Paragraph: ({ children, ...rest }) => <Text {...rest}>{children}</Text>,
   HeaderOne: ({ children, ...rest }) => (
@@ -41,6 +42,7 @@ export const mdxComponents: MDXComponents = {
       {children}
     </Text>
   ),
+  Spacer: ({ ...rest }) => <Spacer {...rest} />,
 };
 
 export default function PostBody({ children }: { children: string }) {
