@@ -60,6 +60,9 @@ const config: Config = {
       opacity: {
         "1": "0.01",
       },
+      lineHeight: {
+        base: "calc(1em + 0.725rem)",
+      },
     },
   },
   plugins: [require("tailwindcss-capsize")],

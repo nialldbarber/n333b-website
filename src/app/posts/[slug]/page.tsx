@@ -25,8 +25,8 @@ export default async function PostPage({
   return (
     <>
       <GoBack />
-      <div className="grid grid-cols-posts-table-of-content pt-2">
-        <div>
+      <div className="grid lg:grid-cols-posts-table-of-content pt-2 mb-10">
+        <div className="lg:pr-20">
           <div className="pb-11 pt-7 flex justify-center">
             <Image
               src={post.image}

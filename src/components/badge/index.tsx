@@ -52,7 +52,7 @@ export function Badge({
       style={{ pointerEvents }}
       {...rest}
     >
-      <Text level="span" className="p-0 text-sm">
+      <Text level="span" className="p-0 text-sm leading-5">
         {text}
       </Text>
     </button>

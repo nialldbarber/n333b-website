@@ -39,6 +39,26 @@ export const mdxComponents: MDXComponents = {
     </Text>
   ),
   Spacer: ({ ...rest }) => <Spacer {...rest} />,
+  Blockquote: ({ children, ...rest }) => (
+    <div
+      className="relative bg-hoverColor border border-accents2 rounded-lg px-10 py-5"
+      {...rest}
+    >
+      <Text className="absolute left-4 top-6 text-[3rem]">“</Text>
+      <div className="italic">{children}</div>
+      <Text className="absolute right-4 top-6 text-[3rem]">”</Text>
+    </div>
+  ),
+  Code: ({ children, language, ...rest }) => (
+    <div className="relative no-code" {...rest}>
+      {language && (
+        <div className="absolute -top-6 right-5 bg-[#1E1E1E] px-4 py-2 rounded-lg">
+          <Text className="text-sm">{language}</Text>
+        </div>
+      )}
+      {children}
+    </div>
+  ),
 };
 
 export default function PostBody({ children }: { children: string }) {

@@ -53,3 +53,23 @@ body {
   color: rgb(var(--foreground-rgb));
   background-color: var(--black);
 }
+
+pre {
+  border-radius: 0.5rem;
+}
+
+/* relative bg-hoverColor border border-accents2 rounded-lg px-10 py-5 */
+.no-code code {
+  border: none;
+  background: rgb(30, 30, 30);
+  border-radius: 0;
+  padding: 0;
+}
+
+code {
+  background-color: rgba(115, 125, 140, 0.17);
+  border: 1px solid var(--accents-2);
+  padding: 0.125rem 0.3rem;
+  border-radius: 0.5rem;
+  /* font-size: 14px; */
+}

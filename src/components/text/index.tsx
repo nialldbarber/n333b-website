@@ -5,7 +5,7 @@ import { cva } from "class-variance-authority";
 
 import { isNumber } from "~/lib/isNumber";
 
-export const textVariants = cva("", {
+export const textVariants = cva("leading-7", {
   variants: {
     variant: {},
     level: {
@@ -13,9 +13,9 @@ export const textVariants = cva("", {
       "2": "capsize text-3xl",
       "3": "capsize text-2xl",
       "4": "capsize text-xl",
-      "5": "capsize text-base",
+      "5": "capsize",
       "6": "capsize text-sm",
-      p: "capsize text-base",
+      p: "capsize",
       span: "text-base inline",
       b: "text-base",
       strong: "text-base",
