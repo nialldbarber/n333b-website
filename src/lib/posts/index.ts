@@ -48,7 +48,8 @@ export async function collectTags() {
   try {
     const posts = await getPosts();
     const validPosts = posts.filter((post): post is Post => post !== null);
-    const uniqueTags = findUniqueTags(validPosts);
+    let uniqueTags = findUniqueTags(validPosts);
+    uniqueTags = ["all", ...uniqueTags];
     return uniqueTags;
   } catch (error) {
     throw Error(`Error collecting tags ${error}`);

@@ -9,9 +9,10 @@ type Props = {
 };
 
 const TAG_MAP: Record<string, string> = {
+  all: "All",
   typescript: "TypeScript",
   generics: "Generics",
-  test: "Test",
+  "react-native": "React Native",
 };
 
 export function PostTags({ tags, selectedFilter, selectFilter }: Props) {
@@ -19,7 +20,10 @@ export function PostTags({ tags, selectedFilter, selectFilter }: Props) {
     <div className="text-center">
       <div className="flex items-center justify-center pb-10">
         {tags?.map((tag, index) => {
-          const isActive = tag === selectedFilter;
+          const isActive = () => {
+            return tag === selectedFilter;
+          };
+
           return (
             <div key={index} className="mx-2">
               <Badge
@@ -29,7 +33,7 @@ export function PostTags({ tags, selectedFilter, selectFilter }: Props) {
                 // @ts-ignore
                 tabIndex={index}
                 index={index}
-                isActive={isActive}
+                isActive={isActive()}
               />
             </div>
           );

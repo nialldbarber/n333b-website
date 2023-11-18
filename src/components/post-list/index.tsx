@@ -19,7 +19,7 @@ export function PostList({ posts, tags }: Props) {
   const selectFilter = (tag: string) => setSelectedFilter(tag);
 
   const updatedFilteredList = useMemo(() => {
-    if (selectedFilter === "") return posts;
+    if (selectedFilter === "" || selectedFilter === "all") return posts;
     return posts.filter((post) => post?.tags.includes(selectedFilter));
   }, [posts, selectedFilter]);
 
@@ -30,7 +30,7 @@ export function PostList({ posts, tags }: Props) {
         selectedFilter={selectedFilter}
         selectFilter={selectFilter}
       />
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 lg:px-0">
         {updatedFilteredList.map((post) => (
           <motion.div
             key={post?.date}
