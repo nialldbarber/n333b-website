@@ -46,13 +46,13 @@ export function Badge({
     <button
       type="button"
       className={cn(
-        "px-2 py-1 rounded-full leading-4 transition-all hover:scale-105 focus:scale-95",
+        "px-3 rounded-full leading-4 transition-all hover:scale-105 focus:scale-95",
         ...getColorFromIndex(isActive)
       )}
       style={{ pointerEvents }}
       {...rest}
     >
-      <Text level="span" className="p-0 text-sm leading-5">
+      <Text level="span" className="p-0 text-sm leading-5 font-medium">
         {text}
       </Text>
     </button>

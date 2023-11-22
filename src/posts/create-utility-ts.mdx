@@ -39,7 +39,7 @@ type Pick<T, K extends keyof T> = {
 </Code>
 
 {/* prettier-ignore */}
-<Paragraph>As my mum would politely say, “what the dickens?!” and maybe more understandably as my dad would say “what the actual f**k?!”. When I first started looking at TypeScript, it was types like this that put me off. I thought “this seems unnecessarily complex”, and well you could understand, however I don’t think a TypeScript beginner is the right audience for dissecting utility types! </Paragraph>
+<Paragraph>As my mum would politely say, “what the dickens?!” and maybe more understandably as my dad would say “what the actual fk?!”. When I first started looking at TypeScript, it was types like this that put me off. I thought “this seems unnecessarily complex”, and well you could understand, however I don’t think a TypeScript beginner is the right audience for dissecting utility types! </Paragraph>
 
 <Spacer paddingVertical="12px" />
 
@@ -110,10 +110,10 @@ type Fruits = keyof typeof Fruits;
 <Paragraph level="2" id="mapped-types">Mapped types</Paragraph>
 
 {/* prettier-ignore */}
-<Paragraph>Ok, so we now know how to create parameters, how to constrain a generic type, let’s move onto the next part! Let’s dissect the final part of the {"Pick<T>"} utility type: **`[SelectedKey in Key]: BaseType[SelectedKey];`**.</Paragraph>
+<Paragraph>Ok, so we now know how to create parameters, how to constrain a generic type, let’s move onto the next part! Let’s dissect the final part of the {"Pick<T>"} utility type: `[SelectedKey in Key]: BaseType[SelectedKey];`.</Paragraph>
 
 {/* prettier-ignore */}
-<Paragraph>This section is where the magic of **`Pick`** truly happens. It uses a feature of TypeScript called a *mapped type*. Mapped types allow us to transform each property in a type in a particular way. In our case, we are using it to *pick* specific properties from **`BaseType`**.</Paragraph>
+<Paragraph>This section is where the magic of `Pick` truly happens. It uses a feature of TypeScript called a *mapped type*. Mapped types allow us to transform each property in a type in a particular way. In our case, we are using it to *pick* specific properties from `BaseType`.</Paragraph>
 
 <Spacer paddingVertical="12px" />
 

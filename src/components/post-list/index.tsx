@@ -10,16 +10,22 @@ import { Stack } from "~/components/stack";
 
 type Props = {
   posts: (Post | null)[];
-  tags: Array<string>;
+  tags: Array<Tags>;
 };
 
-export function PostList({ posts, tags }: Props) {
-  const [selectedFilter, setSelectedFilter] = useState("");
+export const TAG_MAP = {
+  all: "All",
+  typescript: "TypeScript",
+  generics: "Generics",
+  "react-native": "React Native",
+} as const;
+export type Tags = keyof typeof TAG_MAP;
 
-  const selectFilter = (tag: string) => setSelectedFilter(tag);
+export function PostList({ posts, tags }: Props) {
+  const [selectedFilter, setSelectedFilter] = useState<Tags>("all");
 
   const updatedFilteredList = useMemo(() => {
-    if (selectedFilter === "" || selectedFilter === "all") return posts;
+    if (selectedFilter === "all") return posts;
     return posts.filter((post) => post?.tags.includes(selectedFilter));
   }, [posts, selectedFilter]);
 
@@ -28,7 +34,7 @@ export function PostList({ posts, tags }: Props) {
       <PostTags
         tags={tags}
         selectedFilter={selectedFilter}
-        selectFilter={selectFilter}
+        selectFilter={(tag: Tags) => setSelectedFilter(tag)}
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 lg:px-0">
         {updatedFilteredList.map((post) => (

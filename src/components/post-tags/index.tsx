@@ -1,11 +1,12 @@
 "use client";
 
 import { Badge } from "~/components/badge";
+import type { Tags } from "~/components/post-list";
 
 type Props = {
-  tags: Array<string>;
+  tags: Array<Tags>;
   selectedFilter: string;
-  selectFilter: (tag: string) => void;
+  selectFilter: (tag: Tags) => void;
 };
 
 const TAG_MAP: Record<string, string> = {
@@ -15,15 +16,16 @@ const TAG_MAP: Record<string, string> = {
   "react-native": "React Native",
 };
 
-export function PostTags({ tags, selectedFilter, selectFilter }: Props) {
+export function PostTags({
+  tags,
+  selectedFilter = "all",
+  selectFilter,
+}: Props) {
   return (
     <div className="text-center">
       <div className="flex items-center justify-center pb-10">
         {tags?.map((tag, index) => {
-          const isActive = () => {
-            return tag === selectedFilter;
-          };
-
+          const isActive = tag === selectedFilter;
           return (
             <div key={index} className="mx-2">
               <Badge
@@ -33,7 +35,7 @@ export function PostTags({ tags, selectedFilter, selectFilter }: Props) {
                 // @ts-ignore
                 tabIndex={index}
                 index={index}
-                isActive={isActive()}
+                isActive={isActive}
               />
             </div>
           );

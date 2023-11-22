@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
+import { cn } from "~/lib/style/cn";
 import { Footer } from "~/components/footer";
 import { Header } from "~/components/header";
 
@@ -21,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body className={cn(font.className, "antialiased")}>
         <main>
           <Header />
           {children}

@@ -9,7 +9,7 @@ export default async function Posts() {
     <>
       <div className="max-w-2xl m-auto mb-10">
         <Text level="1" weight="fontSemibold">
-          🤔...hmmm?
+          🤔...hmm?
         </Text>
         <Spacer paddingVertical="28px" />
         <div>
@@ -57,6 +57,7 @@ export default async function Posts() {
       </div>
 
       <div className="flex h-minusHeader">
+        {/* @ts-ignore */}
         <PostList posts={posts} tags={tags} />
       </div>
     </>

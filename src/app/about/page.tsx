@@ -7,7 +7,7 @@ import { Text } from "~/components/text";
 
 export default function About() {
   return (
-    <div className="max-w-2xl m-auto mb-10">
+    <div className="max-w-2xl m-auto min-h-max mb-10">
       <Text level="1" weight="fontSemibold">
         👋...hi there
       </Text>
@@ -138,7 +138,7 @@ export default function About() {
         <Stack gutter="5px">
           <Link href="https://olioapp.com/en/" target="_blank">
             <div className="flex p-3 rounded-lg bg-transparent hover:bg-fadedAccents5 transition-all">
-              <div className="w-12 mr-4">
+              <div className="w-12 mr-4 hidden sm:block">
                 <Image
                   src="/about-images/olio.jpeg"
                   width={48}
@@ -154,7 +154,7 @@ export default function About() {
                 </div>
                 <div>
                   <Text className="text-sm italic text-accents5">
-                    Fed 2022 - Present
+                    Feb 2022 - Present
                   </Text>
                 </div>
               </div>
@@ -166,7 +166,7 @@ export default function About() {
             target="_blank"
           >
             <div className="flex p-3 rounded-lg bg-transparent hover:bg-fadedAccents5 transition-all">
-              <div className="w-12 mr-4">
+              <div className="w-12 mr-4 hidden sm:block">
                 <Image
                   src="/about-images/actual-experience.jpeg"
                   width={48}
@@ -191,7 +191,7 @@ export default function About() {
 
           <Link href="https://www.tghp.co.uk/" target="_blank">
             <div className="flex p-3 rounded-lg bg-transparent hover:bg-fadedAccents5 transition-all">
-              <div className="w-12 mr-4">
+              <div className="w-12 mr-4 hidden sm:block">
                 <Image
                   src="/about-images/tghp.jpeg"
                   width={48}

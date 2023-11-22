@@ -38,7 +38,7 @@ export const textVariants = cva("leading-7", {
   },
   defaultVariants: {
     level: "p",
-    weight: "fontNormal",
+    weight: "fontMedium",
   },
 });
 

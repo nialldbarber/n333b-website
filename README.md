@@ -5,4 +5,8 @@
 
 ## Post ideas 
 - Don't use TouchableOpacity -> Pressable
-- [Post] on Promise.all()
+- When to use Promise.all()
+- Profiling React Native performance
+- What is the metro bundler? RN
+- RN modules
+- Server actions

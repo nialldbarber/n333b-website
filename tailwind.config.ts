@@ -31,6 +31,7 @@ const config: Config = {
         accents6: "var(--accents-6)",
         accents7: "var(--accents-7)",
         accents8: "var(--accents-8)",
+        accents9: "var(--accents-9)",
         hoverColor: "var(--hover-color)",
         badgePurpleBg: "var(--badge-purple-bg)",
         badgePurpleFg: "var(--badge-purple-fg)",
