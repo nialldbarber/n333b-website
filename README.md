@@ -10,3 +10,5 @@
 - What is the metro bundler? RN
 - RN modules
 - Server actions
+- How does web navigation work
+- How does react navigation work

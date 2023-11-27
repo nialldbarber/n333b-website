@@ -5,6 +5,7 @@ import { Text } from "~/components/text";
 
 export default async function Posts() {
   const [posts, tags] = await Promise.all([getPosts(), collectTags()]);
+
   return (
     <>
       <div className="max-w-2xl m-auto mb-10">

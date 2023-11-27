@@ -5,8 +5,9 @@ import matter from "gray-matter";
 
 import type { Post } from "~/lib/types";
 
+const postsRoot = "./src/posts/";
+
 export const getPosts = cache(async () => {
-  const postsRoot = "./src/posts/";
   const posts = await fs.readdir(postsRoot);
 
   return Promise.all(
@@ -31,15 +32,6 @@ export async function getPost(slug: string) {
   }
 }
 
-export async function collectLinks(slug: string) {
-  try {
-    const currentPost = await getPost(slug);
-    return currentPost?.sections;
-  } catch (error) {
-    throw Error(`Error collecting links ${error}`);
-  }
-}
-
 function findUniqueTags(tags: Post[]) {
   return Array.from(new Set(tags.flatMap((tag) => tag?.tags)));
 }
@@ -54,4 +46,33 @@ export async function collectTags() {
   } catch (error) {
     throw Error(`Error collecting tags ${error}`);
   }
+}
+
+export async function collectSections() {
+  const posts = await fs.readdir(postsRoot);
+  const sectionRegex = /id="([^"]*)"/g;
+
+  const lines = Promise.all(
+    posts
+      .filter((file) => path.extname(file) === ".mdx")
+      .map(async (file) => {
+        const filePath = `${postsRoot}${file}`;
+        const postContent = await fs.readFile(filePath, "utf-8");
+        const { content } = matter(postContent);
+        return content;
+      })
+  );
+
+  const unwrap = (await lines).flatMap((line) => {
+    let match;
+    const sections = [];
+
+    while ((match = sectionRegex.exec(line))) {
+      sections.push(match[1]);
+    }
+
+    return sections;
+  });
+
+  return unwrap;
 }

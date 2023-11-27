@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import { collectLinks, getPost, getPosts } from "~/lib/posts";
+import { collectSections, getPost, getPosts } from "~/lib/posts";
 import { GoBack } from "~/components/button/go-back";
 import PostBody from "~/components/post-body";
 import TableOfContents from "~/components/table-of-contents";
@@ -16,11 +16,13 @@ export default async function PostPage({
 }: {
   params: { slug: string };
 }) {
-  const [post, links] = await Promise.all([
+  const [post, sections] = await Promise.all([
     getPost(params.slug),
-    collectLinks(params.slug),
+    collectSections(),
   ]);
   if (!post) return notFound();
+
+  console.log(sections);
 
   return (
     <>
@@ -40,7 +42,7 @@ export default async function PostPage({
           <div className="h-[1px] bg-accents2 w-full mb-7" />
           <PostBody>{post?.body}</PostBody>
         </div>
-        {links && <TableOfContents links={links} />}
+        {sections && <TableOfContents sections={sections} />}
       </div>
     </>
   );
