@@ -15,7 +15,7 @@ export const getPosts = cache(async () => {
       .filter((file) => path.extname(file) === ".mdx")
       .map(async (file) => {
         const filePath = `${postsRoot}${file}`;
-        const postContent = await fs.readFile(filePath, "utf-8"); // this will return multiple promises, therefore Promise.all()
+        const postContent = await fs.readFile(filePath, "utf-8");
         const { data, content } = matter(postContent);
         if (data.published === false) return null;
         return { ...data, body: content } as Post;
@@ -48,7 +48,7 @@ export async function collectTags() {
   }
 }
 
-export async function collectSections() {
+export const collectSections = cache(async () => {
   const posts = await fs.readdir(postsRoot);
   const sectionRegex = /id="([^"]*)"/g;
 
@@ -75,4 +75,4 @@ export async function collectSections() {
   });
 
   return unwrap;
-}
+});

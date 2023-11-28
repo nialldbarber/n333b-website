@@ -22,8 +22,6 @@ export default async function PostPage({
   ]);
   if (!post) return notFound();
 
-  console.log(sections);
-
   return (
     <>
       <GoBack />
