@@ -136,7 +136,7 @@ export default function About() {
         </div>
         <Spacer />
         <Stack gutter="5px">
-          <Link href="https://olioapp.com/en/" target="_blank">
+          <Link href="https://olioapp.com/en/" target="_blank" prefetch={false}>
             <div className="flex p-3 rounded-lg bg-transparent hover:bg-fadedAccents5 transition-all">
               <div className="w-12 mr-4 hidden sm:block">
                 <Image
@@ -164,6 +164,7 @@ export default function About() {
           <Link
             href="https://www.linkedin.com/company/actual-experience/?originalSubdomain=uk"
             target="_blank"
+            prefetch={false}
           >
             <div className="flex p-3 rounded-lg bg-transparent hover:bg-fadedAccents5 transition-all">
               <div className="w-12 mr-4 hidden sm:block">
@@ -189,7 +190,7 @@ export default function About() {
             </div>
           </Link>
 
-          <Link href="https://www.tghp.co.uk/" target="_blank">
+          <Link href="https://www.tghp.co.uk/" target="_blank" prefetch={false}>
             <div className="flex p-3 rounded-lg bg-transparent hover:bg-fadedAccents5 transition-all">
               <div className="w-12 mr-4 hidden sm:block">
                 <Image

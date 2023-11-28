@@ -1,6 +1,6 @@
 import { Spacer } from "~/components/spacer";
 
-export default async function Home() {
+export default function Home() {
   return (
     <div className="h-minusHeaderHome flex flex-col justify-center">
       <p className="text-[10vw] font-semibold leading-none">Niall Barber</p>
