@@ -40,7 +40,7 @@ export default async function PostPage({
           <div className="h-[1px] bg-accents2 w-full mb-7" />
           <PostBody>{post?.body}</PostBody>
         </div>
-        {sections && <TableOfContents sections={sections} />}
+        {sections && <TableOfContents sections={sections[params.slug]} />}
       </div>
     </>
   );

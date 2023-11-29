@@ -6,9 +6,13 @@ import matter from "gray-matter";
 import type { Post } from "~/lib/types";
 
 const postsRoot = "./src/posts/";
+const readMDXFiles = async () => {
+  const files = await fs.readdir(postsRoot);
+  return files.filter((file) => path.extname(file) === ".mdx");
+};
 
 export const getPosts = cache(async () => {
-  const posts = await fs.readdir(postsRoot);
+  const posts = await readMDXFiles();
 
   return Promise.all(
     posts
@@ -40,39 +44,27 @@ export async function collectTags() {
   try {
     const posts = await getPosts();
     const validPosts = posts.filter((post): post is Post => post !== null);
-    let uniqueTags = findUniqueTags(validPosts);
-    uniqueTags = ["all", ...uniqueTags];
-    return uniqueTags;
+    return ["all", ...findUniqueTags(validPosts)];
   } catch (error) {
     throw Error(`Error collecting tags ${error}`);
   }
 }
 
 export const collectSections = cache(async () => {
-  const posts = await fs.readdir(postsRoot);
+  const posts = await readMDXFiles();
   const sectionRegex = /id="([^"]*)"/g;
 
-  const lines = Promise.all(
-    posts
-      .filter((file) => path.extname(file) === ".mdx")
-      .map(async (file) => {
-        const filePath = `${postsRoot}${file}`;
-        const postContent = await fs.readFile(filePath, "utf-8");
-        const { content } = matter(postContent);
-        return content;
-      })
+  const sectionsPerPost = await Promise.all(
+    posts.map(async (post) => {
+      const filePath = `${postsRoot}${post}`;
+      const postContent = await fs.readFile(filePath, "utf-8");
+      const { content } = matter(postContent);
+      const matches = [...content.matchAll(sectionRegex)].map(
+        (match) => match[1]
+      );
+      return { [post.replace(".mdx", "")]: matches };
+    })
   );
 
-  const unwrap = (await lines).flatMap((line) => {
-    let match;
-    const sections = [];
-
-    while ((match = sectionRegex.exec(line))) {
-      sections.push(match[1]);
-    }
-
-    return sections;
-  });
-
-  return unwrap;
+  return sectionsPerPost.reduce((acc, curr) => ({ ...acc, ...curr }), {});
 });
