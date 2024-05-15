@@ -39,7 +39,7 @@ export default function About() {
               >
                 knee
               </Text>{" "}
-              (like the body part!)
+              (like the body part)
               <Text
                 level="span"
                 weight="fontSemibold"
@@ -49,11 +49,11 @@ export default function About() {
               </Text>
               <Text level="span">
                 {" "}
-                Currently, I work at Olio
+                Currently, I work at RAC
                 <Text level="span" className="text-xs text-red-300 align-top">
-                  {"!important"}
+                  {" !important"}
                 </Text>
-                , helping fight food-waste and saving our planet!
+                , working on the mobile app. 
               </Text>
             </Text>
           </div>
@@ -113,7 +113,7 @@ export default function About() {
           </div>
           <div>
             <Text>
-              My passion lie in beautiful UI 🎨, performant applications 📈 and
+              My passions lie in beautiful UI 🎨, performant applications 📈 and
               accessibility 👐. Having begun my career at a web agency where
               clients demanded pixel-perfect 👾 output, {"I've"} come to demand
               the same quality in my own work throughout the stack, making sure
@@ -136,6 +136,35 @@ export default function About() {
         </div>
         <Spacer />
         <Stack gutter="5px">
+        <Link
+            href="https://www.rac.co.uk/"
+            target="_blank"
+            prefetch={false}
+          >
+            <div className="flex p-3 rounded-lg bg-transparent hover:bg-fadedAccents5 transition-all">
+              <div className="w-12 mr-4 hidden sm:block">
+                <Image
+                  src="/about-images/rac.jpeg"
+                  width={48}
+                  height={48}
+                  alt="RAC app icon"
+                  className="rounded-full"
+                />
+              </div>
+              <div className="flex justify-between w-full">
+                <div>
+                  <Text>Senior Software Engineer</Text>
+                  <Text>RAC</Text>
+                </div>
+                <div>
+                  <Text className="text-sm italic text-accents5">
+                    Feb 2024 - Present
+                  </Text>
+                </div>
+              </div>
+            </div>
+          </Link>
+
           <Link href="https://olioapp.com/en/" target="_blank" prefetch={false}>
             <div className="flex p-3 rounded-lg bg-transparent hover:bg-fadedAccents5 transition-all">
               <div className="w-12 mr-4 hidden sm:block">
@@ -154,7 +183,7 @@ export default function About() {
                 </div>
                 <div>
                   <Text className="text-sm italic text-accents5">
-                    Feb 2022 - Present
+                    Feb 2022 - Dec 2023
                   </Text>
                 </div>
               </div>
